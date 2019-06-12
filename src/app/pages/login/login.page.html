@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+      <firebase-ui></firebase-ui>
+
+
+      <!-- •••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• -->
+      <!-- <ion-button type="submit"
+         color="primary"
+         expand="block"
+         (click)="fOnLogin()">Login
+      </ion-button> -->
+   <!-- •••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• -->
+
+      <!-- <ion-button (click)="fLogin()"></ion-button> -->
+
+      <h1 *ngIf="_afAuth.auth.currentUser">
+         <!-- Welcome {{_afAuth.auth.currentUser.displayName}} -->
+         <ion-button (click)="fSignOut()">Sign In</ion-button>
+      </h1>
+
+
+      <!-- <app-concept-list></app-concept-list> -->
+
+      <!-- <ion-button *ngIf="_afAuth.auth.currentUser" (click)="fLogin()">Sign In</ion-button>
+      <ion-button *ngIf="_afAuth.auth.currentUser" (click)="fSignOut()">Sign Out</ion-button> -->
+</ion-content>

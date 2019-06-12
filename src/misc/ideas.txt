@@ -1,0 +1,16 @@
+n7-ion4-ideas
+
+purpose:
+   Create an app for ideas and concepts that comes to mind.
+   Similar to a ToDo app.
+   Use Firebase AngularFirestore Service.
+
+
+
+future version:
+   Include a Camera functionality for the avatar feature.
+
+
+Tutorial Refs:
+https://www.youtube.com/watch?v=jRxPOs1OM34
+https://ionicframework.com/docs/api/modal

@@ -1,0 +1,33 @@
+
+
+<!-- <div>Social Page</div>
+<ion-label>Social Page Label</ion-label> -->
+
+<!-- <ion-content style="border: 1px solid orange; width: 200px; height: 300px;">
+   <ion-list>
+      <ion-item>
+         <ion-label>Social Page Label</ion-label>
+      </ion-item>
+   </ion-list> -->
+
+   <!-- <ion-label>Social Page Label {{concepts[1].avatarName}}</ion-label> -->
+
+   <!--=| Social Icon: Like |=-->
+   <ion-badge *ngFor="let icon of concepts | async; let i of index;"
+      color="danger" class="social-badges"
+      (click)="exampleMethodChild()">
+      {{icon.socialLike}}
+      {{icon.avatarName}}
+   </ion-badge>
+   <!-- <ion-grid>
+      <ion-row *ngFor="let concept of concepts | async;">
+         <ion-col size="3" *ngFor="let icon of aSocialIcons; let i of index;" padding class="social-icons">
+            <ion-icon name={{icon.icon}} (click)="fLike(concept.id)"></ion-icon>
+            <ion-badge id="{{icon.social}}-badge" color="danger" class="social-badges">
+               {{concept.socialLike}}
+            </ion-badge>
+         </ion-col>
+      </ion-row>
+   </ion-grid> -->
+
+<!-- </ion-content> -->

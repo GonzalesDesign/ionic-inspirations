@@ -1,0 +1,136 @@
+/******************************************************
+* Project: Angular 7 & Ionic 4
+* Contact: rolandolloyd@gmail.com
+* Copyright © 2019 GonzalesDesign
+* Platform: Angular7/Ionic4
+* Note: Shared scss styles.
+        Import to other styles.
+*******************************************************/
+
+@import url("https://fonts.googleapis.com/css?family=Oswald");
+@import url('https://fonts.googleapis.com/css?family=Ovo');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+@import url('https://fonts.googleapis.com/css?family=Barlow+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Muli');
+@import url("https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i");
+
+$tertiary: #ce4a8c;
+$success: #52ee00;
+$danger: #ff330c;
+/*---=| Shadows |=---*/
+$text-shadow: 1px 1px rgba(rgb(104, 104, 104), .75);
+$text-light-shadow: 1px 1px rgba(rgb(104, 104, 104), .25);
+
+/*---=| Font Variables |=---*/
+$fontBarlow: 'Barlow Condensed', sans-serif;
+$fontMuli: 'Muli', sans-serif;
+$fontMerriweather: "Merriweather";
+$fontOvo: "Ovo";
+$fontOswald: "Oswald";
+$fontOpenSans: "Open Sans";
+
+/*---=| Font Mixin |=---*/
+@mixin fontFamilyWeightSize ($fontFam, $fontWt, $fontSz, $Color){
+    font-family: $fontFam;
+    font-weight: $fontWt;
+    font-size: $fontSz;
+    color: $Color;
+    // to use: @include fontFamilyWeightSize ($rlg-primary-font, 600, 1em);
+}
+
+h1 { @include fontFamilyWeightSize ($fontMerriweather, 500, 2em, rgb(95, 113, 113)); }
+
+h2 { @include fontFamilyWeightSize ($fontMerriweather, 500, 1.5em, rgb(95, 113, 113)); }
+
+h3 { @include fontFamilyWeightSize ($fontMerriweather, 500, 1em, var(--ion-color-medium-shade)); }
+
+h4 {
+   @include fontFamilyWeightSize ($fontOpenSans, 500, 1em, var(--ion-color-medium-shade));
+   text-transform: uppercase;
+ }
+
+p { @include fontFamilyWeightSize ($fontOpenSans, 300, 1em, rgb(95, 113, 113)); }
+
+.card-content-md p {
+   font-size: 16px;
+}
+
+html, body {
+   // font-size: 1em;
+    min-width: 350px;
+    // background-color: var(--ion-color-xtra-tint);
+}
+
+/*--= | Topbars: Sidemenu, Pages |=--*/
+ion-header {
+   ion-toolbar {
+      // background-image: linear-gradient(-90deg, red, yellow);
+      // background-image: linear-gradient(to right, cyan , blue);
+      --background: linear-gradient(to right, var(--ion-color-tertiary) , var(--ion-color-primary-tint2));
+      // --ion-background-color: var(--ion-color-primary);
+      // background-color: var(--ion-color-secondary);
+
+      ion-title {
+         @include fontFamilyWeightSize ($fontOpenSans, 600, 1.5em, var(--ion-color-light));
+         text-shadow: $text-light-shadow;
+      }
+
+      ion-menu-button {
+         color: var(--ion-color-light);
+      }
+
+   }
+}
+
+/*--= | Tabs Menu |=--*/
+ion-tabs {
+   ion-tab-bar.tabs-menu {
+      --ion-background-color: var(--ion-color-light);
+      // background-color: var(--ion-color-primary);
+   }
+}
+
+/*--= | Side Menu |=--*/
+ion-split-pane {
+   ion-menu {
+      ion-content.sidebar{
+         --background: linear-gradient(180deg, var(--ion-color-secondary-tint) , var(--ion-color-light));
+         --ion-background-color: rgba(100, 100, 100, 0);
+         // --ion-background-color: var(--ion-color-secondary-tint);
+         // background-color: red;
+      }
+   }
+}
+
+/*--= | Footer |=--*/
+ion-footer {
+   ion-toolbar {
+      --ion-background-color: rgba(var(--ion-color-dark-shade), 0);
+
+      ion-title {
+         @include fontFamilyWeightSize ($fontOpenSans, 600, 1em, var(--ion-color-light-shade));
+      }
+
+      ion-list {
+         ion-item {
+            ion-icon {
+               font-size: .8em;
+            }
+
+         }
+      }
+   }
+}
+
+
+/*--= | Slider |=--*/
+.txt-over-img2 {
+   position: absolute;
+   // width: 100vw;
+   @include fontFamilyWeightSize ($fontOvo, 300, 9vw, var(--ion-color-primary-contrast));
+   text-align: center;
+   text-shadow: $text-shadow;
+   text-transform: uppercase;
+   bottom: 2em;
+   border: 0px solid rgb(247, 52, 52);
+}

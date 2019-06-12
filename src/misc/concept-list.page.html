@@ -1,0 +1,65 @@
+<ion-list padding>
+
+      <ion-grid>
+         <ion-row>
+            <ion-col size="8">Title:</ion-col>
+            <ion-col size="2">Created:</ion-col>
+            <ion-col size="2">Due:</ion-col>
+         </ion-row>
+      </ion-grid>
+
+      <ion-item *ngFor="let concept of (concepts | async)"
+         button
+         [routerLink]="['/concept', concept.id]">
+         <ion-grid>
+            <!-- <ion-row>
+               <ion-col size="6">
+                  Title:
+               </ion-col>
+               <ion-col size="6">
+                  Created:
+               </ion-col>
+            </ion-row> -->
+            <!-- <ion-infinite-scroll-content> -->
+            <ion-row>
+               <ion-col size="6">
+                  <ion-item lines="none" no-padding style="font-size: 2em;">
+                     {{ (concept.name.length>20)? (concept.name | slice:0:20)+'...':(concept.name) }}
+                  </ion-item>
+                     <!-- {{ concept.name | slice:0:12 }} -->
+               </ion-col>
+
+               <ion-col size="4">
+                  <!-- <ion-item slot="end"> -->
+                     <!-- <ion-label>Created:</ion-label> -->
+                     <ion-item lines="none" style="font-size: 2em;">
+                        {{ concept.day }}
+                     </ion-item>
+                     <ion-item lines="none" style="font-size: .8em;">
+                        <!-- {{ concept.bulan }} -->
+                        <ion-datetime display-format="DD MMM" [(ngModel)]="concept.bulan"></ion-datetime>
+                     </ion-item>
+
+                  <ion-item lines="none" no-padding>
+
+                     day: {{aldaw}}
+                     <ion-datetime display-format="MMM" [(ngModel)]="concept.dateCreated"></ion-datetime>
+                  </ion-item>
+                  <!-- </ion-item> -->
+               </ion-col>
+               <ion-col size="2">
+                  <!-- <ion-item slot="end"> -->
+                     <!-- <ion-label>Created:</ion-label> -->
+                     <!-- {{ concept.dateDue }} -->
+                     <!-- <ion-item [(ngModel)]="concept.dateDue"></ion-item> -->
+                     <ion-datetime display-format="DD MMM" [(ngModel)]="concept.dateDue"></ion-datetime>
+                  <!-- </ion-item> -->
+               </ion-col>
+            </ion-row>
+            <!-- </ion-infinite-scroll-content> -->
+         </ion-grid>
+      </ion-item>
+
+   </ion-list>
+<!-- </ion-col>
+</ion-row> -->

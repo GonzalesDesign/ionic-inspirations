@@ -1,0 +1,37 @@
+[
+   {
+      "id": "a0",
+      "avatarName": "Chi",
+      "avatarUrl": "./../../../assets/images/Chi.jpg"
+   },
+   {
+      "id": "a1",
+      "avatarName": "Jim",
+      "avatarUrl": "./../../../assets/images/Jim.jpg"
+   },
+   {
+      "id": "a2",
+      "avatarName": "Moh",
+      "avatarUrl": "./../../../assets/images/Moh.jpg"
+   },
+   {
+      "id": "a3",
+      "avatarName": "Girl",
+      "avatarUrl": "./../../../assets/images/Girl.png"
+   },
+   {
+      "id": "a4",
+      "avatarName": "John",
+      "avatarUrl": "./../../../assets/images/John.png"
+   },
+   {
+      "id": "a5",
+      "avatarName": "Mujka",
+      "avatarUrl": "./../../../assets/images/Mujka.jpg"
+   },
+   {
+      "id": "a6",
+      "avatarName": "Lady",
+      "avatarUrl": "./../../../assets/images/Lady.png"
+   }
+]
