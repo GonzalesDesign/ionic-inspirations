@@ -48,7 +48,8 @@ ion-item :host{
    align-items: center;
    padding-top: 22px;
 	// justify-content: center;
-	background: rgba(white, 0);
+   background: rgba(white, 0);
+   width: 20vw;
 	border: 0px solid grey;
 }
 
@@ -69,11 +70,16 @@ ion-avatar.avatar {
    @include fontFamilyWeightSize( $fontOpenSans, 500, 7vw, var(--ion-color-dark-tint));
 	background: rgba(white, 0);
 }
+
 .list-notes {
 	@include fontFamilyWeightSize($fontMerriweather, 400, .9em, var(--ion-color-medium-shade));
    background: rgba(white, 0);
    line-height: 1.5;
 }
+
+/*--=| Carriage return in textarea |=--*/
+.multi_lines_text { white-space: pre-line; }
+
 .list-notes-author {
 	@include fontFamilyWeightSize($fontMerriweather, 300, .5em, var(--ion-color-medium-shade));
    background: rgba(white, 0);
@@ -132,8 +138,8 @@ ion-avatar.avatar {
 .social-badges {
    position: absolute;
    top: 0px;
-   left: 40px;
-   border-radius: 15px;
+   left: 50%;
+   border-radius: 10px;
 }
 
 p {

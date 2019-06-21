@@ -1,27 +1,27 @@
-import { AvatarService, Avatar } from './../../../services/avatar.service';
-import { Concept } from './../../../services/concept.service';
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { NavParams, ModalController } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { AvatarService, Avatar } from "./../../../services/avatar.service";
+import { Concept } from "./../../../services/concept.service";
+import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
+import { NavParams, ModalController } from "@ionic/angular";
+import { Observable } from "rxjs";
 
 @Component({
-	selector: 'app-avatar',
-	templateUrl: './avatar.page.html',
-	styleUrls: ['./avatar.page.scss']
+	selector: "app-avatar",
+	templateUrl: "./avatar.page.html",
+	styleUrls: ["./avatar.page.scss"]
 })
 export class AvatarPage implements OnInit {
-	@ViewChild('avatarImage') avatarImage: ElementRef;
+	@ViewChild("avatarImage") avatarImage: ElementRef;
 
 	// "value" passed in componentProps
 	@Input() value: number;
 
-   public passedProp = null;
+	public passedProp = null;
 
-   /*--=| Avatars Array from DB |=--*/
-   // public avatarsDBSelection: any = [];
-   public avatarsDBSelection: Observable<Avatar[]>;
+	/*--=| Avatars Array from DB |=--*/
+	// public avatarsDBSelection: any = [];
+	public avatarsDBSelection: Observable<Avatar[]>;
 
-   /*--=| Avatars Array: For manually populating DB |=--*/
+	/*--=| Avatars Array: For manually populating DB |=--*/
 	// public avatarSelectOption = [
 	// 	{ id: 'a0',
 	// 		avatarName: 'Chi',
@@ -49,8 +49,8 @@ export class AvatarPage implements OnInit {
 	constructor(
 		private _modalController: ModalController,
 		public _navParams: NavParams,
-      private _elementRef: ElementRef,
-      private _avatarService: AvatarService
+		private _elementRef: ElementRef,
+		private _avatarService: AvatarService
 	) {
 		// ,
 		// componentProps can also be accessed at construction time using NavParams
@@ -58,34 +58,33 @@ export class AvatarPage implements OnInit {
 	}
 
 	ngOnInit() {
-      /*--=| passedProp: property passed from the caller component |=--*/
-		this.passedProp = this._navParams.get('props');
-      // console.log('this.passedProp: ', this.passedProp);
+		/*--=| passedProp: property passed from the caller component |=--*/
+		this.passedProp = this._navParams.get("props");
+		// console.log('this.passedProp: ', this.passedProp);
 
-      // let fetchedAvatar = this._avatarService.fFetchAvatars();
-      // console.log('fetchedAvatar: ', fetchedAvatar);
+		// let fetchedAvatar = this._avatarService.fFetchAvatars();
+		// console.log('fetchedAvatar: ', fetchedAvatar);
 
-      /*--=| on page display: call service to fetch the avatars data |=--*/
-      this.avatarsDBSelection = this._avatarService.fFetchAvatars();
-      console.log('this.avatarsDBSelection: ', this.avatarsDBSelection);
+		/*--=| on page display: call service to fetch the avatars data |=--*/
+		this.avatarsDBSelection = this._avatarService.fFetchAvatars();
+		console.log("this.avatarsDBSelection: ", this.avatarsDBSelection);
 
-      // this.fAddAvatarsManually(); // run once only!
-      // let dumpedAvatars = this._avatarService.fDumpAvatarsData(this.avatarSelectOption[0]);
-      // console.log('dumpedAvatars: ', dumpedAvatars);
-      // this._avatarService.fGetDatas();
+		// this.fAddAvatarsManually(); // run once only!
+		// let dumpedAvatars = this._avatarService.fDumpAvatarsData(this.avatarSelectOption[0]);
+		// console.log('dumpedAvatars: ', dumpedAvatars);
+		// this._avatarService.fGetDatas();
+	}
 
-   }
-
-   /*--=| Run once to populate db: Test |=--*/
-   // public fAddAvatarsManually() {
-   //    for(let i=0; i<this.avatarSelectOption.length; i++) {
-   //       this._avatarService.fDumpAvatarsData(this.avatarSelectOption[i]);
-   //    }
-   // }
+	/*--=| Run once to populate db: Test |=--*/
+	// public fAddAvatarsManually() {
+	//    for(let i=0; i<this.avatarSelectOption.length; i++) {
+	//       this._avatarService.fDumpAvatarsData(this.avatarSelectOption[i]);
+	//    }
+	// }
 
 	public fSelectedImage(selected: Concept) {
-      console.log('=--------------------------------=');
-      console.log('selected: ', selected);
+		console.log("=--------------------------------=");
+		console.log("selected: ", selected);
 		/*--=| findIndex() = find the index of the clicked image
              from the calling component by comparing avatarName
              from the avatarSelectOption array and the clicked

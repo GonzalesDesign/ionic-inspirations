@@ -1,5 +1,5 @@
 import { ConceptService, Concept } from './../../../services/concept.service';
-import { Component, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, AfterViewInit, Input } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
@@ -9,6 +9,9 @@ import { Observable } from 'rxjs';
 	styleUrls: ['./socials.page.scss']
 })
 export class SocialsPage implements OnInit, AfterViewInit {
+
+   // TEST
+   @Input() receivedParentMessage: string;
 
    @Output() exampleOutput = new EventEmitter<string>();
 

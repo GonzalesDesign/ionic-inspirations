@@ -6,13 +6,30 @@
 			<ion-back-button defaultHref="/"></ion-back-button>
 		</ion-buttons>
 		<ion-title>details</ion-title>
-	</ion-toolbar>
+   </ion-toolbar>
+   <!-- xx: {{ receivedParentMessage }} -->
 </ion-header>
 <!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
 <!--=| CONTENT CONTAINER |=-->
 <ion-content *ngIf="_afAuth.auth.currentUser" padding>
+   
 	<ion-grid>
 		<ion-row>
+
+         <!-- <div type="hidden" [(ngModel)]="concept.authUser" class="input">
+            {{_afAuth.auth.currentUser.displayName}}
+         </div> -->
+         <!-- <ion-input type="hidden" placeholder={{_afAuth.auth.currentUser.displayName}} 
+            [value]="_afAuth.auth.currentUser.displayName"
+            (input)="concept.authUser">
+         </ion-input> -->
+         <!-- <ion-input type="hidden" placeholder={{_afAuth.auth.currentUser.displayName}}
+            [(ngModel)]="concept.authUser" 
+            value="{{_afAuth.auth.currentUser.displayName}}" 
+            class="input">
+            {{_afAuth.auth.currentUser.displayName}}
+         </ion-input> -->
+
          <ion-col size="10" offset="1" class="input">
                Welcome {{_afAuth.auth.currentUser.displayName}}
                <!-- Welcome {{user.displayName}} -->
@@ -142,7 +159,7 @@
             <!-- <ion-item></ion-item> -->
 
 				<!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-				<!--=| Due Date |=-->
+				<!--=| DUE DATE |=-->
 				<ion-grid style="border: 0px solid red; --ion-grid-padding: 0px;">
 					<ion-row>
                   <ion-col size="1">
@@ -169,25 +186,21 @@
 </ion-content>
 
 <!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-<!--=| ADD BUTTON |=-->
-<!-- <ion-footer> -->
+<!--=| FOOTER: ADD BUTTON |=-->
 <ion-footer *ngIf="_afAuth.auth.currentUser && !concept.id">
-   {{_afAuth.auth.currentUser.displayName}}
-   xx: {{concept.id}}
-<!-- <ion-footer *ngIf="!concept.id"> -->
-   <!-- x: {{_afAuth.auth.currentUser}}
-   xx: {{concept.id}} -->
+   {{_afAuth.auth.currentUser.displayName}} NO ID YET!
 	<ion-toolbar style="background: var(--ion-color-success-shade2);">
 
       <ion-button expand="block" fill="clear" color="light" (click)="fAddIdea()">
 			<ion-icon name="checkmark" slot="start"></ion-icon>Add a Concept
       </ion-button>
 
-      <ion-button *ngIf="_afAuth.auth.currentUser" (click)="fSignOut()">Sign Out</ion-button>
+      <ion-button *ngIf="!_afAuth.auth.currentUser" (click)="fSignOut()">Sign Out</ion-button>
 
 	</ion-toolbar>
 </ion-footer>
-
+<!--=|•••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
+<!--=| FOOTER: UPDATE AND DELETE BUTTONS |=-->
 <ion-footer *ngIf="concept.id">
    {{_afAuth.auth.currentUser.displayName}}
    xx: {{concept.id}}

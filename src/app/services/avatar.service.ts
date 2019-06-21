@@ -13,8 +13,10 @@ export interface Avatar {
 	providedIn: 'root'
 })
 export class AvatarService {
+
 	private avatars: Observable<Avatar[]>;
-	private avatarCollection: AngularFirestoreCollection<Avatar>;
+   
+   private avatarCollection: AngularFirestoreCollection<Avatar>;
 
 	constructor(private _afs: AngularFirestore) {
       this.avatarCollection = this._afs.collection<Avatar>('avatar');
@@ -47,7 +49,6 @@ export class AvatarService {
    }
 
    public fDumpAvatarsData(avatar: Avatar) {
-      // avatar: Avatar
       console.log('avatar: ', avatar);
       return this.avatarCollection.add(avatar);
    //    this.avatarCollection.doc("LA").set({

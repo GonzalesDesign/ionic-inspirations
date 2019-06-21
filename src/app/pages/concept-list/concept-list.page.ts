@@ -1,17 +1,23 @@
 import { firebase } from 'firebaseui-angular';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { ConceptService, Concept } from '../../services/concept.service';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from '../login/auth.service';
 import { ToastController } from '@ionic/angular';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+// import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
 	selector: 'app-concept-list',
 	templateUrl: './concept-list.page.html',
 	styleUrls: ['./concept-list.page.scss']
 })
+
 export class ConceptListPage implements OnInit {
+
+   // @Input ();
+   // public messageToChild: string = 'Message From Parent';
 
    public concepts: Observable<Concept[]>;
    public isLogin: boolean;
@@ -23,11 +29,12 @@ export class ConceptListPage implements OnInit {
    }
    private afUser;
 
+   public authFirstName:string
+
    public exampleParent: string;
    public exampleMethodParent($event) {
       this.exampleParent = $event;
    }
-
 
    // temp
    counter = 0;
@@ -48,38 +55,55 @@ export class ConceptListPage implements OnInit {
    //temp
    public aSocialIcons = [
       {  social: 'like',
-         icon: 'thumbs-up'
+         icon: 'thumbs-up',
+         funktion: 'this.fLike(id)'
       },
       {  social: 'love',
-         icon: 'heart'
+         icon: 'heart',
+         funktion: 'this.fLike(id)'
       },
       {  social: 'ionic',
-         icon: 'logo-ionic'
+         icon: 'logo-ionic',
+         funktion: 'this.fShare()'
       }
    ]
    // temp
    public likesCount = 0;
    public lovesCount = 10;
 
+   public emailAddress = 'rolandolloyd@gmail.com';
 
    constructor(private _conceptService: ConceptService,
                public _afAuth: AngularFireAuth,
                private _authService: AuthService,
-               private _toastController: ToastController) {}
+               private _toastController: ToastController,
+               private _socialSharing: SocialSharing) {}
 
 	ngOnInit() {
       this.isLogin = true;
       this.concepts = this._conceptService.fFetchIdeas();
       console.log('this.concepts: ', this.concepts);
 
+      // this.fTestSubscribe();
+      // this.authFirstName = this._conceptService.authFirstName;
+      // this._conceptService.fAuthFirstName(this.authFirstName);
+      // console.log('this.authFirstName: ', this.authFirstName);
+      // let firstNameAuth = this._conceptService.authFirstName;
+      // console.log('firstNameAuth: ', firstNameAuth);
+      // let testSubs = this._conceptService.fSubscribeTest();
+      // console.log('testSubs: ', testSubs);
+      
+      // console.log('this._afAuth.auth.currentUser--------: ', this._afAuth.auth);
+      // console.log('this._afAuth.auth.currentUser--------: ', this._afAuth.auth.currentUser);
+      // console.log('this._afAuth.auth.currentUser.displayName--------: ', this._afAuth.auth.currentUser.displayName);
 
+      // this.authFirstName = this._afAuth.auth.currentUser.displayName;
 	}
 
    public fLike(selected) {
-      console.log('*--------------------------------------------=|');
+      console.log('*------------------------------------=|');
       console.log('Like it!: ', selected);
-      // let likesCount = this.likesCount;
-      // console.log('likesCount: ',likesCount);
+      console.log('location.pathname: ', location.pathname);
       /*--------------------------------------------=|
          pseudo-code:
          selected = aSocialIcons[selected]
@@ -88,36 +112,49 @@ export class ConceptListPage implements OnInit {
          and display it back as a badge.
       |=---------------------------------------------*/
       this._conceptService.fGetIdea(selected).subscribe(concept => {
-         // likesCount = concept.socialLike;
-         // console.log('likesCount1: ',likesCount);
-
-         // concept.socialLike = this.likesCount++;
          concept.socialLike += 1;
-         // console.log('concept.socialLike1: ',concept.socialLike);
          this._conceptService.fUpdateSocial(concept);
-
          // this._conceptService.fUpdateSocial(concept).then( () => {
          //    // concept.socialLike = this.likesCount++;
-         //    // console.log('concept.socialLike2: ',concept.socialLike);
+            console.log('concept.socialLike: ',concept.socialLike);
          //    this.fShowToast('Liked!: '+ concept.socialLike);
          // })
       }, err => {
-         this.fShowToast('There\'s a problem trying to update your social: (')
+         this.fShowToast('There\'s a problem trying to update your social like: (')
       });
    }
-      
-   public fShowToast(msg) {
-		this._toastController
-			.create({ message: msg, duration: 1000 })
-			.then(toast => toast.present());
+
+   public fTestSubscribe() {
+      this._conceptService.fSubscribeTest()
+      // .subscribe(concept => {
+      //    concept.socialLike;
+      // })
    }
 
    public fHeart() {
       console.log('Love it!');
    }
 
-   public fShare() {
+   async fShare() {
       console.log('Share it!');
+      // Check if sharing via email is supported
+      this._socialSharing.canShareViaEmail().then(() => {
+         console.log('Sharing via email is possible');
+      }).catch(() => {
+         console.log('Sharing via email is not possible');
+      });
+
+      // Share via email
+      this._socialSharing.shareViaEmail(
+         'Body: Create the Basic Ionic 4 Social Sharing App', 
+         'Subject: Email from concept', 
+         [this.emailAddress],
+         null, null, null)
+         .then(() => {
+            console.log('Success!');
+         }).catch(() => {
+            console.log('Error!');
+      });
    }
 
    public fSignOut() {
@@ -128,6 +165,21 @@ export class ConceptListPage implements OnInit {
          // location.reload();
       })
    }
+
+   public fShowToast(msg) {
+		this._toastController
+			.create({ message: msg, duration: 1000 })
+			.then(toast => toast.present());
+   }
+
+   // @HostListener('window:scroll', ['$event'])
+   // onScroll(event) {
+   //    console.log('You scrolled!', event);
+   //    let yPos = window.pageYOffset;
+   //    // this.fTestScroll();
+   // }
+
+
 
 
 

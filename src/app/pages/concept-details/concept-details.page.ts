@@ -1,6 +1,6 @@
 import { firebase } from 'firebaseui-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController, ModalController, NavController } from '@ionic/angular';
 import { Concept, ConceptService } from '../../services/concept.service';
@@ -14,7 +14,9 @@ import { AvatarPage } from './modal/avatar.page';
 })
 export class ConceptDetailsPage implements OnInit {
 
-   public fNewDate(date){
+   // @Input() receivedParentMessage: string;
+
+   public fNewDate(date, autoDue){
       let monthNames = [
          "Jan", "Feb", "Mar",
          "Apr", "May", "Jun", "Jul",
@@ -23,7 +25,7 @@ export class ConceptDetailsPage implements OnInit {
        ];
       let year = date.getFullYear();
       let monthIndex = date.getMonth();
-      let day = date.getDate();
+      let day = date.getDate() + autoDue;
       // this.aldaw = date.getDate();
       return monthNames[monthIndex] + ' ' + day + ',' + year;
    }
@@ -80,14 +82,20 @@ export class ConceptDetailsPage implements OnInit {
    //    }
    // ];
 
+   // public authFirstName: string;
+
    public concept: Concept = {
 		title: '',
       notes: '',
       author: '',
-      dateCreated: this.fNewDate(new Date()),
-      dateDue: this.fNewDate(new Date()),
+      dateCreated: this.fNewDate(new Date(), 0),
+      dateDue: this.fNewDate(new Date(), 5),
       avatarInfo: '',
       avatarName: 'Chi',
+      authUser: '',
+      authFirstName: '',
+      // authUser: 'Alejandro Boticelli',
+      // avatarUrl: '',
       avatarUrl: './../../../assets/images/Chi.jpg',
       selectedAvatar: 'SelectedAvatar',
       socialLike: 0
@@ -111,9 +119,13 @@ export class ConceptDetailsPage implements OnInit {
       // test
       // let user = firebase.auth().currentUser;
       // console.log('user: ', user.displayName);
+      // this.authFirstName = user.displayName;
+      // console.log('this.authFirstName: ', this.authFirstName);
 
       this.id = this._activatedRoute.snapshot.paramMap.get('id');
       console.log('this.id: ', this.id);
+
+      
    }
 
    // Test
@@ -131,13 +143,24 @@ export class ConceptDetailsPage implements OnInit {
             this.concept = concept;
          });
       }
+      /*--=| POPULATE FB AUTHUSER FIELD |=--*/
+      this.concept.authUser = this._afAuth.auth.currentUser.displayName
+      console.log('this._afAuth.auth.currentUser.displayName--------: ', this._afAuth.auth.currentUser.displayName);
+
+      let str = this.concept.authUser;
+      let res = str.split(' ');
+      console.log('res: ', res);
+      this.concept.authFirstName = res[0];
+      console.log('this.concept.authFirstName: ', this.concept.authFirstName);
+      
+      // this.authFirstName
    }
 
    public fThumbsUp() {
       console.log('details.fThumbsUp');
-
    }
 
+   /*--=| POPULATE FIREBASE ONCE |=--*/
    // public fAvatarHandler() {
    //    let selectedAvatar = this.concept.avatarName;
    //    console.log('selectedAvatar: ', selectedAvatar);

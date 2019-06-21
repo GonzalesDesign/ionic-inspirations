@@ -23,6 +23,10 @@ import { SocialsPage } from './pages/concept-list/socials/socials.page';
 import { SharedModule } from './shared.module';
 import { IconsComponent } from './pages/concept-list/icons/icons.component';
 
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { ServiceWorkerModule } from '@angular/service-worker';
+// import { SocialSharing } from '@ionic-native/social-sharing';
+
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
   signInSuccessUrl: '/concept-list',
@@ -84,6 +88,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
      AngularFireAuthModule,
      FirebaseUIModule.forRoot(firebaseUiAuthConfig),
      AvatarPageModule,
+     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
    //   SocialsPageModule
       // SharedModule
    ],
@@ -94,7 +99,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
    //  SocialsPage,
    //  AvatarPage,
    //  NavParams,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    SocialSharing
   ],
 
   bootstrap: [AppComponent],

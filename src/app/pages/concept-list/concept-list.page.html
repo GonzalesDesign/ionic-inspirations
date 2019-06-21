@@ -2,29 +2,29 @@
 	<!-- <ion-item slot="end" no-padding> -->
 	<!-- <ion-fab vertical="topX" horizontal="rightX" slot="fixedX"> -->
 	<!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-	<!--=| Topbar Grid |=-->
+	<!--=| TOPBAR GRID |=-->
 	<ion-grid no-padding>
 		<ion-row
 			style="padding: 0px; margin: 0px;
             background-color: var(--ion-color-secondary);">
 			<!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-			<!--=| Toolbar |=-->
+			<!--=| TOOLBAR |=-->
 			<ion-col size="10" style="padding: 0px; margin: 0px;">
 				<ion-toolbar color="primary" no-padding>
 					<ion-title slot="start">inspirations</ion-title>
 				</ion-toolbar>
 			</ion-col>
-			<!--=| Add Button |=-->
+			<!--=| ADD BUTTON |=-->
 			<ion-col *ngIf="_afAuth.auth.currentUser" no-padding size="2"
 				style="display: flex;
                align-items: center;
                justify-content: center;
                padding: 0px;
-               width: 100%;
-               height: 50px;">
+               width: 100%;">
 				<ion-button expand="full" fill="none" routerLink="/concept"
-					style="padding-top: 0em;
-                  border: 0px solid yellowgreen">
+               style="padding-top: 0em;
+                  margin: 0px;
+                  border: 0px solid yellowgreen;">
 					<ion-icon name="add"
 						style="display: flex;
                      font-size: 2.5em;
@@ -58,8 +58,11 @@
 	<!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
 	<!--=| Card |=-->
 	<ion-card>
+      <!-- <ion-label [receivedParentMessage]="messageToChild"></ion-label> -->
+      <!-- <app-concept-details [receivedParentMessage]="messageToChild"></app-concept-details> -->
+      <!-- <app-socials [receivedParentMessage]="messageToChild"></app-socials> -->
 		<!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-		<!--=| Cover |=-->
+		<!--=| GRID: COVER IMAGE |=-->
 		<ion-grid no-padding
 			class="main-image-grid"
 			style="padding: 0px; margin: 0px; overflow: hidden;">
@@ -105,6 +108,7 @@
                               Inspirational Thoughts
                            </ion-label>
                         </ion-col>
+                        <!--=| AUTHENTICATED NAME |=-->
                         <ion-col no-padding size="12">
                            <ion-label *ngIf="_afAuth.auth.currentUser"
                               style="font-size: 3vw;
@@ -121,12 +125,11 @@
 			</ion-row>
 		</ion-grid>
 
-
-
+      <!--=| GRID: CONCEPT LIST |=-->
       <ion-grid *ngIf="_afAuth.auth.currentUser">
          <ion-row>
             <ion-col>
-               <p>app icons</p>
+               <!-- <p>app icons</p> -->
                <!-- <app-icons></app-icons> -->
                <ion-list *ngFor="let concept of concepts | async"
                   style="border-bottom: 1px solid rgba(100, 100, 100, .25);
@@ -134,19 +137,34 @@
                      <!-- ; let i of index;" -->
                   <!-- button [routerLink]="['/concept', concept.id]" -->
                   <!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-                  <!--=| Avatar |=-->
-                  <ion-grid no-padding class="main-grid">
+                  <!--=| GRID: AVATAR |=-->
+                  <ion-grid no-padding class="main-grid" style="padding-top: .5em;">
                      <ion-row class="row-main">
                         <!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-                        <!--=| Avatar |=-->
+                        <!--=| AVATAR |=-->
                         <ion-col size="4" class="col-avatar">
                            <ion-row>
                               <ion-col>
                                  <ion-list class="list-avatar">
-                                    <ion-avatar slot="endX" class="avatar">
+                                    <ion-avatar slot="endX" class="avatarX" 
+                                       style="border: .7vw solid white; 
+                                          border-radius: 6vw; 
+                                          /* box-shadow: 5px 5px 4px #a7a6a6; */
+                                          filter: drop-shadow(5px 5px 4px #a7a6a6);
+                                          height: 12vw; width: 12vw;">
                                        <img src="{{ concept.avatarUrl }}" />
                                     </ion-avatar>
-                                    <ion-label text-right>{{ concept.avatarName }} Avatar</ion-label>
+                                    <!-- <ion-label text-right>{{ concept.avatarName }} Avatar</ion-label> -->
+                                    <!--=| AUTHENTICATED NAME |=-->
+                                    <ion-label text-center text-uppercase *ngIf="_afAuth.auth.currentUser"
+                                       style="font-size: 2vw;
+                                          padding-top: 1em;
+                                          opacity: .75;">
+                                          {{concept.authFirstName}}
+                                          <!-- <div> authFirstName: {{ authFirstName }} </div> -->
+
+                                       <!-- {{_afAuth.auth.currentUser.displayName}} -->
+                                    </ion-label>
                                  </ion-list>
                               </ion-col>
                            </ion-row>
@@ -164,19 +182,17 @@
                            </ion-row>
                         </ion-col>
                         <!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-                        <ion-col size="6" no-padding
-                           class="col-title"
+                        <ion-col size="6" no-padding class="col-title"
                            style="border: 0px solid red;
                               padding-top: 0px;">
                            <ion-row style="border: 0px solid red;">
-                              <ion-list
-                                 class="list-title-bar"
+                              <ion-list class="list-title-bar"
                                  style="padding: 0px;
                                        padding-top: 0px;
                                        margin: 0px;
                                        height: 8px;
                                        width: 100%;
-                                       background-color: rgba(193, 252, 252, 0);">
+                                       background-color: rgba(var(--ion-color-medium), 0);">
                               </ion-list>
                            </ion-row>
                            <ion-row style="text-align: left">
@@ -190,10 +206,10 @@
 
                               <!--=| Concept Notes |=-->
                               <ion-col size="12">
-                                 <ion-list padding class="list-notes">
+                                 <ion-list padding class="list-notes multi_lines_text">
+                                    <!-- [innerHTML]="concept.notes" -->
                                     <!-- {{ concept.notes }} -->
-                                    {{
-                                       concept.notes.length > 200
+                                    {{ concept.notes.length > 200
                                           ? (concept.notes | slice: 0:200) + '...'
                                           : concept.notes
                                     }}
@@ -228,14 +244,64 @@
                               <ion-col size="12">
                                  <ion-row>
                                     <!--=| Social Icon: Like |=-->
-                                    <ion-col size="3" *ngFor="let icon of aSocialIcons; let i of index;" padding class="social-icons">
+                                    <!-- <ion-col size="3" *ngFor="let icon of aSocialIcons; let i of index;" padding class="social-icons">
                                        <ion-icon name={{icon.icon}} (click)="fLike(concept.id)"></ion-icon>
-                                       <!-- <ion-icon name={{icon.icon}} (click)="fLike(i)"></ion-icon> -->
                                        <ion-badge id="{{icon.social}}-badge" color="danger" class="social-badges">
                                           {{concept.socialLike}}
                                        </ion-badge>
-                                       <!-- <p style="font-size: .6em;">{{concept.id}}</p> -->
+                                    </ion-col> -->
+                                    <ion-col size-xs="6" size-sm="3" size-md="2" style="display: flex; 
+                                                         flex-direction: column;
+                                                         justify-content: center;
+                                                         border: 0px solid yellowgreen;">
+                                       <ion-row style="border: 0px solid orange;">
+                                          <ion-col size="12">
+                                             <ion-badge id="like-badge" color="secondary" class="social-badges" style="font-size: .6em; color: wheat;">
+                                                {{concept.socialLike}}
+                                             </ion-badge>
+                                          </ion-col>
+                                       </ion-row>
+                                       <ion-row style="border: 0px solid grey; text-align: center;">
+                                          <ion-col size="12">
+                                             <ion-icon name="thumbs-up" (click)="fLike(concept.id)" style="font-size: 1.2em; color: grey;"></ion-icon>
+                                          </ion-col>
+                                       </ion-row>
                                     </ion-col>
+                                    <ion-col size-xs="6" size-sm="3" size-md="2" style="display: flex; 
+                                                         flex-direction: column;
+                                                         justify-content: center;
+                                                         border: 0px solid yellowgreen;">
+                                       
+                                       <ion-row style="border: 0px solid orange;">
+                                          <ion-col size="12">
+                                             <ion-badge id="like-badge" color="secondary" class="social-badges"  style="font-size: .6em; color: wheat;">
+                                                {{concept.socialLike}}
+                                             </ion-badge>
+                                          </ion-col>
+                                       </ion-row>
+
+                                       <ion-row style="border: 0px solid grey; text-align: center;">
+                                          <ion-col size="12">
+                                             <ion-icon name="share" (click)="fShare()" style="font-size: 1.2em; color: grey;"></ion-icon>
+                                          </ion-col>
+                                       </ion-row>
+                                       
+                                    </ion-col>
+                                    
+                                    <ion-row>
+                                       <ion-col size="12">
+                                          <ion-button expand="full" (click)="fShare()">Email</ion-button>
+                                       </ion-col>
+                                    </ion-row>
+                                    <!-- <ion-col size="6" style="display: flex; 
+                                                         flex-direction: column;
+                                                         justify-content: center;
+                                                         border: 1px solid yellowgreen;">
+                                       <ion-icon name="logo-ionic" (click)="fShare()"></ion-icon>
+                                       <ion-badge id="ionic-badge" color="danger" class="social-badges">
+                                          {{concept.socialLike}}
+                                       </ion-badge>
+                                    </ion-col> -->
                                     <!--=| Social Icon: Heart |=-->
                                     <!-- <ion-col size="3" padding class="social-icons">
                                        <ion-icon name="heart" (click)="fHeart()"></ion-icon>
@@ -308,15 +374,13 @@
                         </ion-col>
                      </ion-row>
 
-                     <ion-row class="edit-row">
-                        <ion-col
-                           size="10"
-                           style="background-color: var(--ion-color-primary-tint4);"></ion-col>
+                     <ion-row class="edit-row" *ngIf="_afAuth.auth.currentUser.displayName === concept.authUser; else hideEdit">
+                        <ion-col size="10" style="background-color: var(--ion-color-primary-tint4);"></ion-col>
                         <!--=| Edit Button |=-->
-                        <ion-col
+                        <ion-col 
                            size="2"
                            style="height: 100%; background-color: var(--ion-color-primary-tint2);">
-                           <ion-button
+                           <ion-button 
                               fill="none"
                               expand="block"
                               [routerLink]="['/concept', concept.id]"
@@ -327,7 +391,28 @@
                               Edit
                            </ion-button>
                         </ion-col>
+                        <!-- <ion-col size="12" style="background-color: var(--ion-color-primary-tint4);" text-center>
+                           <ng-template #hideEdit>
+                                 CAN ONLY EDIT WHAT YOU'VE CREATED
+                           </ng-template>
+                     </ion-col> -->
                      </ion-row>
+
+                     <ng-template #hideEdit>
+                        <ion-row>
+                           <ion-col size="12"  text-center text-uppercase
+                              style="display: flex; 
+                                    align-items: center; 
+                                    justify-content: center; 
+                                    font-size: .9em;
+                                    background-color: var(--ion-color-primary-tint4); 
+                                    color: var(--ion-color-danger-tint2);
+                                    height: 50px;;">
+                              Only Original Author Can Edit
+                           </ion-col>
+                        </ion-row>
+                     </ng-template>
+
                   </ion-grid>
                   <!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
                </ion-list>
@@ -344,7 +429,7 @@
       <ion-grid>
          <ion-row>
             <ion-col size="10">
-               <ion-searchbar
+               <ion-searchbar style="background:var(--ion-color-secondary-tint);"
                   [(ngModel)]="searchTerm"
                   (ionChange)="setFilteredItems()">
                </ion-searchbar>
