@@ -5,48 +5,44 @@
 		<ion-buttons slot="start">
 			<ion-back-button defaultHref="/"></ion-back-button>
 		</ion-buttons>
-		<ion-title>details</ion-title>
+      <ion-title>details</ion-title>
+      <!-- <div *ngIf="mediumWidth" padding slot="end"  -->
+         <ion-grid fixed>
+            <ion-row>
+               <ion-col size="6"></ion-col>
+               <ion-col size="6"></ion-col>
+            </ion-row>
+         </ion-grid>
+      <div padding slot="end" 
+         class="welcome-user">Welcome {{_afAuth.auth.currentUser.displayName}}
+      </div>
+      
    </ion-toolbar>
    <!-- xx: {{ receivedParentMessage }} -->
 </ion-header>
+
 <!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
 <!--=| CONTENT CONTAINER |=-->
 <ion-content *ngIf="_afAuth.auth.currentUser" padding>
    
 	<ion-grid>
 		<ion-row>
-
-         <!-- <div type="hidden" [(ngModel)]="concept.authUser" class="input">
-            {{_afAuth.auth.currentUser.displayName}}
-         </div> -->
-         <!-- <ion-input type="hidden" placeholder={{_afAuth.auth.currentUser.displayName}} 
-            [value]="_afAuth.auth.currentUser.displayName"
-            (input)="concept.authUser">
-         </ion-input> -->
-         <!-- <ion-input type="hidden" placeholder={{_afAuth.auth.currentUser.displayName}}
-            [(ngModel)]="concept.authUser" 
-            value="{{_afAuth.auth.currentUser.displayName}}" 
-            class="input">
-            {{_afAuth.auth.currentUser.displayName}}
-         </ion-input> -->
-
-         <ion-col size="10" offset="1" class="input">
+         <!-- <ion-col size="10" offset="1" class="input">
                Welcome {{_afAuth.auth.currentUser.displayName}}
-               <!-- Welcome {{user.displayName}} -->
-         </ion-col>
+         </ion-col> -->
+         <!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
+         <!--=| Title |=-->
 			<ion-col size="10" offset="1">
-            <!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-            <!--=| Title |=-->
             <ion-item>
-               <ion-label position="stacked">Title</ion-label>
+               <ion-label position="stacked" class="edit-header">Title</ion-label>
                <ion-input [(ngModel)]="concept.title" placeholder="Enter your Title here" class="input"></ion-input>
             </ion-item>
 				<!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
 				<!--=| Notes |=-->
 				<ion-item>
-					<ion-label position="stacked">Notes</ion-label>
+					<ion-label position="stacked" class="edit-header">Notes</ion-label>
                <ion-textarea [(ngModel)]="concept.notes"
-                  rows="4"
+                  rows="6"
                   placeholder="Enter your Notes here"
                   class="input">
 					</ion-textarea>
@@ -54,109 +50,38 @@
 				<!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
 				<!--=| Author |=-->
 				<ion-item>
-					<ion-label position="stacked">Author</ion-label>
+					<ion-label position="stacked" class="edit-header">Author</ion-label>
 					<ion-input [(ngModel)]="concept.author" placeholder="Author's name" class="input"></ion-input>
 				</ion-item>
 				<!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-				<!--=| Your Name |=-->
-				<!-- <ion-item style="border: 1px solid red;">
-      <ion-label>Your Name:</ion-label>
-      <ion-input type="text" [(ngModel)]="concept.avatarUrl"></ion-input>
-   </ion-item> -->
-
-				<!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-				<!--=| Pick Avatar |=-->
-				<!-- <ion-item>
-      <ion-label>Pick Your Avatar</ion-label>
-         <ion-select [(ngModel)]="concept.avatarName">
-            <ion-select-option *ngFor="let avatar of avatarSelectOption; let i = index;">
-               {{ avatar.avatarName }}
-            </ion-select-option>
-         </ion-select>
-      </ion-item> -->
-				<!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-				<!--=| Avatar URL: |=-->
-				<!-- <ion-item>
-         <ion-label>Avatar URL: </ion-label>
-         <ion-list >{{ concept.avatarUrl }}</ion-list>
-      </ion-item> -->
-				<!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-				<!--=| Avatar Short Info |=-->
-				<!-- <ion-item>
-         <ion-label position="stacked">Avatar Info:</ion-label>
-         <ion-textarea [(ngModel)]="concept.avatarInfo" rows="4" class="input"></ion-textarea>
-      </ion-item> -->
 
 				<ion-grid>
 					<ion-row>
                   <!--=|*•••••••••••••••••••••••••••••••••••••••••*|=-->
 						<!--=| Pick Avatar |=-->
-						<ion-col size="4" style="border: 0px solid red;" class="col-avatar">
-							<!-- <ion-item> -->
-                        <!-- <ion-label>Pick Your Avatar</ion-label> -->
-
-                        <!--=|*•••••••••••••••••••••••••••••••••••••••••*|=-->
-								<!-- <ion-select [(ngModel)]="concept.avatarName" interface="popoverX">
-									<ion-select-option
-                              *ngFor=" let avatar of avatarSelectOption; let i = index;">
-                              <p class="input" >
-                                 {{ avatar.avatarName }}
-                              </p>
-									</ion-select-option>
-                        </ion-select> -->
-                        <!-- <img [src]="concept.avatarUrl" > -->
-                     <!-- <ion-icon name="cafe"></ion-icon> -->
-                     <!-- <img [src]="concept.avatarUrl"> -->
-                     <!-- <img [src]="movie.imageurl"> -->
-                     <!-- <div style="background-image: url('./../../../assets/images/Chi.jpg')"></div> -->
-
-                        <!--=|*•••••••••••••••••••••••••••••••••••••••••*|=-->
-                        <!-- <ion-select [(ngModel)]="concept.avatarUrl" class="form-control">
-                           <ion-select-option value="Xi">Choose an Avatar</ion-select-option>
-                           <ion-select-option *ngFor=" let avatar of avatarSelectOption;" value="{{avatar}}">{{avatar.avatarName}}</ion-select-option>
-                           <ion-select-option *ngFor=" let avatar of avatarSelectOption;" value="{{avatar}}">{{avatar.avatarUrl}}</ion-select-option>
-                        </ion-select>
-                        <img [src]="concept.avatarUrl" > -->
-
-                        <!--=|*•••••••••••••••••••••••••••••••••••••••••*|=-->
-                        <!-- <ion-item>
-                           <ion-label>Awesome Label</ion-label>
-                        </ion-item> -->
+						<ion-col size-sm="6" offset-sm="3" size-md="4" offset-md="0" class="col-avatar">
                         <!--=|*•••••••••••••••••••••••••••••••••••••••••*|=-->
                         <!--=| Open Modal |=-->
-                        <ion-button (click)="fOpenModal()">Select Avatar</ion-button>
+                        <ion-button expand="full" (click)="fOpenModal()">Select Avatar</ion-button>
                         <img src="{{ concept.avatarUrl }}">
                         <ion-label class="ion-text-uppercase">{{ concept.avatarName }}</ion-label>
-
-                        <!--=|*•••••••••••••••••••••••••••••••••••••••••*|=-->
-                        <!-- <ion-avatar class="avatar">
-                           <img src="{{ concept.avatarUrl }}">
-                        </ion-avatar> -->
-                        <!--=|*•••••••••••••••••••••••••••••••••••••••••*|=-->
-                        <!-- <div style="border-top: 1px solid var(--ion-color-medium-tint2);"></div>
-                        <ion-list text-center>
-                           <ion-label>Or Take A Photo:</ion-label>
-                           <ion-list>
-                              <i class="fas fa-camera fa-3x" data-fa-transform="shrink-8"
-                                 style="color: var(--ion-color-tertiary);"></i>
-                           </ion-list>
-                        </ion-list> -->
-							<!-- </ion-item> -->
                   </ion-col>
+
                   <!--=|*•••••••••••••••••••••••••••••••••••••••••*|=-->
 						<!--=| Avatar Short Info |=-->
 						<ion-col size="8" style="border-left: 1px solid var(--ion-color-medium-tint2);">
-							<ion-label position="stacked">Avatar Info:</ion-label>
-							<ion-textarea placeholder="Short avatar info goes here..."
-								[(ngModel)]="concept.avatarInfo"
-								rows="4"
+							<ion-label position="stacked" class="edit-header">Avatar Info:</ion-label>
+							<ion-textarea placeholder="short avatar description"
+								[(ngModel)]="concept.avatarDescription"
+								rows="6"
 								class="input">
 							</ion-textarea>
-						</ion-col>
+                  </ion-col>
+                  
 					</ion-row>
             </ion-grid>
+
             <div style="border-top: 1px solid var(--ion-color-medium-tint2);"></div>
-            <!-- <ion-item></ion-item> -->
 
 				<!--=|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
 				<!--=| DUE DATE |=-->
@@ -166,14 +91,13 @@
                         <i class="far fa-calendar-alt fa-2x"></i>
                   </ion-col>
 						<ion-col size="10">
-								<ion-label position="stacked">Due Day:</ion-label>
+								<ion-label position="stacked" class="edit-header">Publishing Date:</ion-label>
 								<ion-datetime
 									display-format="MMM DD, YYYY"
 									pickerFormat="MMM DD, YYYY"
                            [(ngModel)]="concept.dateDue"
-                           style="color: var(--ion-color-medium);"
-                           class="input"
-                           style="border-top: 1px solid red;">
+                           class="input">
+                           <!-- style="color: var(--ion-color-medium); border-top: 0px solid red;" -->
 								</ion-datetime>
 						</ion-col>
 						<ion-col size="12"></ion-col>
@@ -189,9 +113,9 @@
 <!--=| FOOTER: ADD BUTTON |=-->
 <ion-footer *ngIf="_afAuth.auth.currentUser && !concept.id">
    {{_afAuth.auth.currentUser.displayName}} NO ID YET!
-	<ion-toolbar style="background: var(--ion-color-success-shade2);">
+	<ion-toolbar no-padding style="background: var(--ion-color-success-shade2);">
 
-      <ion-button expand="block" fill="clear" color="light" (click)="fAddIdea()">
+      <ion-button expand="full" fill="clear" color="light" (click)="fAddIdea()">
 			<ion-icon name="checkmark" slot="start"></ion-icon>Add a Concept
       </ion-button>
 
@@ -202,33 +126,35 @@
 <!--=|•••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
 <!--=| FOOTER: UPDATE AND DELETE BUTTONS |=-->
 <ion-footer *ngIf="concept.id">
-   {{_afAuth.auth.currentUser.displayName}}
-   xx: {{concept.id}}
-	<ion-row no-padding text-center>
-		<!--=|•••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-		<!--=| DELETE BUTTON |=-->
-		<ion-col size="6">
-			<ion-button
-				expand="block"
-				fill="solid"
-				color="danger"
-				(click)="fDeleteIdea()">
-				<ion-icon name="trash" slot="start"></ion-icon>Delete
-			</ion-button>
-		</ion-col>
+   <ion-toolbar no-padding no-margin color="medium">
+   <!-- {{_afAuth.auth.currentUser.displayName}}
+   xx: {{concept.id}} -->
+      <ion-grid>
+         <ion-row class="details-button-container" no-padding text-center>
+            <!--=|•••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
+            <!--=| DELETE BUTTON |=-->
+            <ion-col class="details-button" no-padding size="6">
+               <ion-button  class="delete-button"
+                  expand="full"
+                  fill="none"
+                  (click)="fDeleteIdea()">
+                  <ion-icon name="trash" slot="start"></ion-icon>Delete
+               </ion-button>
+            </ion-col>
 
-		<!--=|•••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
-		<!--=| UPDATE BUTTON |=-->
-		<ion-col size="6">
-			<ion-button
-				expand="block"
-            fill="solid"
-            color="success"
-				(click)="fUpdateIdea()">
-				<ion-icon name="trash" slot="start"></ion-icon>Update
-			</ion-button>
-		</ion-col>
-	</ion-row>
+            <!--=|•••••••••••••••••••••••••••••••••••••••••••••••••••••••••|=-->
+            <!--=| UPDATE BUTTON |=-->
+            <ion-col class="details-button" no-padding size="6">
+               <ion-button class="update-button"
+                  expand="full"
+                  fill="none"
+                  (click)="fUpdateIdea()">
+                  <ion-icon name="create" slot="start"></ion-icon>Update
+               </ion-button>
+            </ion-col>
+         </ion-row>
+      </ion-grid>
+   </ion-toolbar>
 </ion-footer>
 
 <!-- =|••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••|= -->

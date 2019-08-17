@@ -23,9 +23,14 @@ import { SocialsPage } from './pages/concept-list/socials/socials.page';
 import { SharedModule } from './shared.module';
 import { IconsComponent } from './pages/concept-list/icons/icons.component';
 
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx'; //Simon say
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ConceptDetailsPageModule } from './pages/concept-details/concept-details.module';
 // import { SocialSharing } from '@ionic-native/social-sharing';
+
+// import { ShareButtonsModule } from '@ngx-share/buttons';
+// import { HttpClientModule } from '@angular/common/http';
+// import { ShareModule } from '@ngx-share/core';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -84,11 +89,16 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
      IonicModule.forRoot(),
      AppRoutingModule,
      AngularFireModule.initializeApp(environment.firebase),
+    //  AngularFireModule.initializeApp(environment.production),
      AngularFirestoreModule,
      AngularFireAuthModule,
      FirebaseUIModule.forRoot(firebaseUiAuthConfig),
-     AvatarPageModule,
+     AvatarPageModule, //xx
+    // ConceptDetailsPageModule, //x
      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    //  HttpClientModule,
+    //  ShareButtonsModule,
+    //  ShareModule
    //   SocialsPageModule
       // SharedModule
    ],

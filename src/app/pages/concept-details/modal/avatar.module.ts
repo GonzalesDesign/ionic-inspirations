@@ -21,6 +21,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
+  // entryComponents: [AvatarPage],
   declarations: [AvatarPage]
 })
 export class AvatarPageModule {}

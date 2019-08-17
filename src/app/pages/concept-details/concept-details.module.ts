@@ -7,12 +7,15 @@ import { IonicModule } from '@ionic/angular';
 
 import { ConceptDetailsPage } from './concept-details.page';
 import { AvatarPageModule } from './modal/avatar.module';
+import { AvatarPage } from './modal/avatar.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: ConceptDetailsPage
-  }
+  // { path: '', component: ConceptDetailsPage }
+  { path: '', component: ConceptDetailsPage,
+    // children: [
+    //   { path: 'modal', loadChildren: './modal/avatar.module#AvatarPageModule' }
+    // ]
+}
 ];
 
 @NgModule({
@@ -21,9 +24,10 @@ const routes: Routes = [
      CommonModule,
      FormsModule,
      RouterModule.forChild(routes),
-   //   AvatarPageModule
+    //  AvatarPageModule //x
   ],
+  // entryComponents: [AvatarPage],
   exports: [ConceptDetailsPage],
-  declarations: [ConceptDetailsPage]
+  declarations: [ConceptDetailsPage] //, AvatarPage]
 })
 export class ConceptDetailsPageModule {}

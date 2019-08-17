@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>login</ion-title>
+  <ion-toolbar color="primary" class="login-toolbar">
+    <ion-title text-center>login</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,11 +17,12 @@
    <!-- •••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• -->
 
       <!-- <ion-button (click)="fLogin()"></ion-button> -->
+      
+      <!-- Welcome {{_afAuth.auth.currentUser.displayName}} -->
 
-      <h1 *ngIf="_afAuth.auth.currentUser">
-         <!-- Welcome {{_afAuth.auth.currentUser.displayName}} -->
+      <!-- <h1 *ngIf="_afAuth.auth.currentUser">
          <ion-button (click)="fSignOut()">Sign In</ion-button>
-      </h1>
+      </h1> -->
 
 
       <!-- <app-concept-list></app-concept-list> -->

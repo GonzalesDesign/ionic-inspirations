@@ -10,6 +10,7 @@ import { SocialsPage } from './socials/socials.page';
 // import { SocialsPageModule } from './socials/socials.module';
 // import { SharedModule } from 'src/app/shared.module';
 import { IconsComponent } from './icons/icons.component';
+import { SharedModule } from 'src/app/shared.module';
 // import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 // import { FirebaseUIModule } from 'firebaseui-angular;
 
@@ -28,12 +29,12 @@ const routes: Routes = [
     RouterModule.forChild(routes),
    //  SocialsPageModule
    //  FirebaseUIModule
-   // SharedModule
+   SharedModule
   ],
   declarations: [
      ConceptListPage,
-     IconsComponent, //paste in shared.module
-     SocialsPage
+    //  IconsComponent, //paste in shared.module
+    //  SocialsPage
    ],
    // entryComponents: [SocialsPage],
    schemas: [CUSTOM_ELEMENTS_SCHEMA]

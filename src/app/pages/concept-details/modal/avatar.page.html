@@ -1,20 +1,24 @@
 <ion-header no-padding style="widthX: 200px">
-	<ion-toolbar>
-		<ion-title>Avatar Modal:</ion-title>
-	</ion-toolbar>
+   <ion-toolbar>
+      <ion-buttons slot="start">
+         <ion-back-button defaultHref=""></ion-back-button>
+         <!-- <ion-back-button (click)="fModalClose()"></ion-back-button> -->
+      </ion-buttons>
+      <ion-title>Avatar Modal:</ion-title>
+   </ion-toolbar>
 </ion-header>
 
 <ion-content style="widthX: 200px">
-	<ion-card padding>
-		<p>
-			A Modal is a dialog that appears on top of the app's content, and must
-			be dismissed by the app before interaction can resume. It is useful as
-			a select component when there are a lot of options to choose from, or
-			when filtering items in a list, as well as many other use cases.
-		</p>
+   <ion-card padding>
+      <p>
+         A Modal is a dialog that appears on top of the app's content, and must
+         be dismissed by the app before interaction can resume. It is useful as
+         a select component when there are a lot of options to choose from, or
+         when filtering items in a list, as well as many other use cases.
+      </p>
 
       <!--=| Avatar array locally |=-->
-		<!-- <ion-grid fixed>
+      <!-- <ion-grid fixed>
 			<ion-row>
             <ion-col size="4" *ngFor="let avatar of avatarSelectOption; let i of index;">
                <img [src]="avatar.avatarUrl" (click)="fSelectedImage(i)" #{{avatar}}/>
@@ -30,12 +34,12 @@
       <ion-grid fixed>
          <ion-row>
             <ion-col size="3" *ngFor="let avatarDB of avatarsDBSelection | async; let i of index;">
-               <img [src]="avatarDB.avatarUrl" (click)="fSelectedImage(i)" #{{avatarDB}}/>
-                  {{avatarDB.avatarName}}
+               <img [src]="avatarDB.avatarUrl" (click)="fSelectedImage(i)" #{{avatarDB}} />
+               {{avatarDB.avatarName}}
             </ion-col>
          </ion-row>
       </ion-grid>
    </ion-card>
 
-	<!-- <ion-button (click)="fCloseModal()">Close</ion-button> -->
+   <!-- <ion-button (click)="fCloseModal()">Close</ion-button> -->
 </ion-content>

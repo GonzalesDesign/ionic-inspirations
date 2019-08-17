@@ -1,5 +1,4 @@
 /*--=| shared theme |=--*/
-// @import './../../../theme/variables.scss';
 @import './../../../theme/shared-styles.scss';
 
 // ion-grid {
@@ -8,14 +7,48 @@
 //    border: 4px solid greenyellow;
 // }
 
-.input {
-   @include fontFamilyWeightSize( $fontMerriweather, 500, 1em, var(--ion-color-medium));
+.welcome-user {
+   @include fontFamilyWeightSize( $fontMerriweather, 500, 1em, var(--ion-color-primary-tint2));
 }
 
+/*--=| Text input headers |=--*/
+ion-item {
+   ion-label.edit-header {
+      @include fontFamilyWeightSize( $fontOpenSans, 600, 1.4em, var(--ion-color-medium));
+      // font-size: 1.6em !important;
+   }
+}
+
+.input {
+   @include fontFamilyWeightSize( $fontMerriweather, 500, 1em, var(--ion-color-dark-tint));
+}
+
+.details-button-container {
+   padding: 0px;
+   margin: 0px;
+   border: 0px solid greenyellow;
+
+   .details-button {
+      padding: 0px;
+      margin: 0px;
+   }
+
+   .delete-button {
+      color: var(--ion-color-secondary-tint3);
+      background: var(--ion-color-danger-shade2);
+   }
+
+   .update-button {
+      color: var(--ion-color-secondary-tint3);
+      background: var(--ion-color-success-shade3);
+   }
+
+}
 
 .col-avatar {
    display: flex;
    flex-direction: column;
    align-items: center;
    // justify-content: center;
+   border: 1px solid var(--ion-color-medium-tint2);
 }

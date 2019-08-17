@@ -6,6 +6,7 @@ import { map, take } from 'rxjs/operators';
 export interface Avatar {
 	id?: string;
 	avatarName: string;
+	avatarDescription: string;
 	avatarUrl: string;
 }
 
@@ -30,11 +31,11 @@ export class AvatarService {
             });
          })
       );
-      console.log('this.avatars: ', this.avatars);
+      // console.log('this.avatars: ', this.avatars);
    }
 
    public fFetchAvatars(): Observable<Avatar[]> {
-      console.log('fFetchAvatars: ', this.avatars);
+      // console.log('fFetchAvatars: ', this.avatars);
       return this.avatars;
    }
 
@@ -49,28 +50,8 @@ export class AvatarService {
    }
 
    public fDumpAvatarsData(avatar: Avatar) {
-      console.log('avatar: ', avatar);
+      // console.log('avatar: ', avatar);
       return this.avatarCollection.add(avatar);
-   //    this.avatarCollection.doc("LA").set({
-   //       avatarName: "John",
-   //       avatarUrl: "./../../../assets/images/John.png"
-   //   })
-   //   console.log('this.avatarCollection: ', this.avatarCollection);
    }
-
-   // public fGetDatas() {
-   //    let docRef = this.avatarCollection.doc("Chi");
-   //    docRef.get().then(function(doc) {
-   //       if (doc.exists) {
-   //          console.log("Document data:", doc.data());
-   //       }
-   //    }
-   // }
-
-
-   // public fAddIdea(avatar: Avatar): Promise<DocumentReference> {
-   //    console.log(this.avatarCollection.add(avatar));
-   //    // return this.avatarCollection.add(avatar);
-   // }
 
 }

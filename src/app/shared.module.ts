@@ -12,7 +12,7 @@ import { IconsComponent } from './pages/concept-list/icons/icons.component';
       SocialsPage,
       IconsComponent
    ],
-
+   
    // entryComponents: [SocialsPage],
 
 	exports: [
@@ -26,6 +26,6 @@ import { IconsComponent } from './pages/concept-list/icons/icons.component';
    //    IonicModule, //added didn't work
    //    // SocialsPageModule
    // ],
-   schemas: [CUSTOM_ELEMENTS_SCHEMA]
+   // schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SharedModule {}

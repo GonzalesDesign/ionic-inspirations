@@ -22,29 +22,44 @@ export class AvatarPage implements OnInit {
 	public avatarsDBSelection: Observable<Avatar[]>;
 
 	/*--=| Avatars Array: For manually populating DB |=--*/
-	// public avatarSelectOption = [
-	// 	{ id: 'a0',
-	// 		avatarName: 'Chi',
-	// 		avatarUrl: './../../../assets/images/Chi.jpg'},
-	// 	{ id: 'a1',
-	// 		avatarName: 'Jim',
-	// 		avatarUrl: './../../../assets/images/Jim.jpg'},
-	// 	{ id: 'a2',
-	// 		avatarName: 'Moh',
-	// 		avatarUrl: './../../../assets/images/Moh.jpg'},
-	// 	{ id: 'a3',
-	// 		avatarName: 'Girl',
-	// 		avatarUrl: './../../../assets/images/Girl.png'},
-	// 	{ id: 'a4',
-	// 		avatarName: 'John',
-	// 		avatarUrl: './../../../assets/images/John.png'},
-	// 	{ id: 'a5',
-	// 		avatarName: 'Mujka',
-	// 		avatarUrl: './../../../assets/images/Mujka.jpg'},
-	// 	{ id: 'a6',
-	// 		avatarName: 'Lady',
-	// 		avatarUrl: './../../../assets/images/Lady.png'}
-	// ];
+	public avatarSelectOption = [
+		// { id: 'a0',
+		// 	avatarName: 'Chi',
+		// 	avatarUrl: './../../../assets/images/Chi.jpg',
+		// 	avatarDescription: 'Chi, The silk coder'},
+		// { id: 'a1',
+		// 	avatarName: 'Jim',
+		// 	avatarUrl: './../../../assets/images/Jim.jpg',
+		// 	avatarDescription: 'Jim, The bearded guy'},
+		// { id: 'a2',
+		// 	avatarName: 'Moh',
+		// 	avatarUrl: './../../../assets/images/Moh.jpg',
+		// 	avatarDescription: 'Moh, the rebel funk'},
+		// { id: 'a3',
+		// 	avatarName: 'Girl',
+		// 	avatarUrl: './../../../assets/images/Girl.png',
+		// 	avatarDescription: 'Gal, coder'},
+		// { id: 'a4',
+		// 	avatarName: 'John',
+		// 	avatarUrl: './../../../assets/images/John.png',
+		// 	avatarDescription: 'Moh, the young gun'},
+		// { id: 'a5',
+		// 	avatarName: 'Mujka',
+		// 	avatarUrl: './../../../assets/images/Mujka.jpg',
+		// 	avatarDescription: 'Mujka, from Russia with love'},
+		// { id: 'a6',
+		// 	avatarName: 'Lady',
+		// 	avatarUrl: './../../../assets/images/Lady.png',
+		// 	avatarDescription: 'Lady, code assasin'},
+		// { id: 'a7',
+		// 	avatarName: 'Tupac',
+		// 	avatarUrl: './../../../assets/images/Tupac.webp',
+		// 	avatarDescription: 'Tupac, definitive complicated rapper, a beautiful soul.'},
+			{ id: 'a8',
+				avatarName: 'Bruce',
+				avatarUrl: './../../../assets/images/Bruce.jpg',
+				avatarDescription: 'Bruce, be water man'}
+	];
 
 	constructor(
 		private _modalController: ModalController,
@@ -70,17 +85,18 @@ export class AvatarPage implements OnInit {
 		console.log("this.avatarsDBSelection: ", this.avatarsDBSelection);
 
 		// this.fAddAvatarsManually(); // run once only!
+
 		// let dumpedAvatars = this._avatarService.fDumpAvatarsData(this.avatarSelectOption[0]);
 		// console.log('dumpedAvatars: ', dumpedAvatars);
 		// this._avatarService.fGetDatas();
 	}
 
 	/*--=| Run once to populate db: Test |=--*/
-	// public fAddAvatarsManually() {
-	//    for(let i=0; i<this.avatarSelectOption.length; i++) {
-	//       this._avatarService.fDumpAvatarsData(this.avatarSelectOption[i]);
-	//    }
-	// }
+	public fAddAvatarsManually() {
+	   for(let i=0; i<this.avatarSelectOption.length; i++) {
+	      this._avatarService.fDumpAvatarsData(this.avatarSelectOption[i]);
+	   }
+	}
 
 	public fSelectedImage(selected: Concept) {
 		console.log("=--------------------------------=");
@@ -104,4 +120,9 @@ export class AvatarPage implements OnInit {
 	public fCloseModal(i: Concept) {
 		this._modalController.dismiss(i);
 	}
+	
+	public fModalClose() {
+		this._modalController.dismiss();
+	}
+
 }

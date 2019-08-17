@@ -82,23 +82,50 @@ export class ConceptListPage implements OnInit {
 	ngOnInit() {
       this.isLogin = true;
       this.concepts = this._conceptService.fFetchIdeas();
-      console.log('this.concepts: ', this.concepts);
+      // console.log('this.concepts: ', this.concepts);
+      console.log('/*---------------------------------*/');
 
-      // this.fTestSubscribe();
-      // this.authFirstName = this._conceptService.authFirstName;
-      // this._conceptService.fAuthFirstName(this.authFirstName);
-      // console.log('this.authFirstName: ', this.authFirstName);
-      // let firstNameAuth = this._conceptService.authFirstName;
-      // console.log('firstNameAuth: ', firstNameAuth);
-      // let testSubs = this._conceptService.fSubscribeTest();
-      // console.log('testSubs: ', testSubs);
       
-      // console.log('this._afAuth.auth.currentUser--------: ', this._afAuth.auth);
-      // console.log('this._afAuth.auth.currentUser--------: ', this._afAuth.auth.currentUser);
-      // console.log('this._afAuth.auth.currentUser.displayName--------: ', this._afAuth.auth.currentUser.displayName);
+   }
+   
+   public fAddLike(selected) {
+      // concept.socialLike = this.likesCount++;
+      console.log('this.likesCount++: ', this.likesCount++);
+      let sx = (concept => {
+         concept.socialLike += this.likesCount;
+         console.log('concept: ', concept);
+         console.log('sx: ', sx);
+      });
+      console.log('sx: ', sx);
 
-      // this.authFirstName = this._afAuth.auth.currentUser.displayName;
-	}
+      setTimeout(() => {
+         this.fUpdateLikeInDB(selected);
+         this.likesCount = 1;
+         // this._conceptService.fGetIdea(selected);
+         //    let sx = (concept => {
+         //    concept.socialLike += this.likesCount;
+         //    // concept.socialLike += 1;
+         //    this._conceptService.fUpdateSocial(concept);
+         // })
+         
+      }, 300);
+      
+   }
+
+   public fUpdateLikeInDB(selected) {
+      this._conceptService.fGetIdea(selected).subscribe(concept => {
+         concept.socialLike += this.likesCount;
+         // concept.socialLike += 1;
+         this._conceptService.fUpdateSocial(concept);
+         // this._conceptService.fUpdateSocial(concept).then( () => {
+         //    // concept.socialLike = this.likesCount++;
+            console.log('concept.socialLike +1 : ',concept.socialLike);
+         //    this.fShowToast('Liked!: '+ concept.socialLike);
+         // })
+      }, err => {
+         this.fShowToast('There\'s a problem trying to update your social like: (')
+      });
+   }
 
    public fLike(selected) {
       console.log('*------------------------------------=|');
@@ -134,7 +161,16 @@ export class ConceptListPage implements OnInit {
    public fHeart() {
       console.log('Love it!');
    }
-
+   /*---------------------------------------------------*/
+   async fShareTwitter() {
+      this._socialSharing.shareViaTwitter('Share via Twitter').then(() => {
+         
+      }).catch( e => {
+         console.log('Problem sharing with Twitter');
+      })
+   }
+   
+   /*---------------------------------------------------*/
    async fShare() {
       console.log('Share it!');
       // Check if sharing via email is supported
@@ -143,7 +179,7 @@ export class ConceptListPage implements OnInit {
       }).catch(() => {
          console.log('Sharing via email is not possible');
       });
-
+      
       // Share via email
       this._socialSharing.shareViaEmail(
          'Body: Create the Basic Ionic 4 Social Sharing App', 
@@ -156,7 +192,8 @@ export class ConceptListPage implements OnInit {
             console.log('Error!');
       });
    }
-
+      /*---------------------------------------------------*/
+      
    public fSignOut() {
       // console.log('this.afUser: ', this.afUser);
       this._afAuth.auth.signOut().then(() => {

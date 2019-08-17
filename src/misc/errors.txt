@@ -1,0 +1,9 @@
+Aug 13, 2019
+
+Not sure yet!
+
+Problem:
+When published as PWA, it asked for the production environment
+
+Solution:
+Copy firebase info from environment to environment.prod
