@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "ng7-ion4-ideas",
+  "appId": "com.example.capapp",
+  "appName": "CadApp",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www"

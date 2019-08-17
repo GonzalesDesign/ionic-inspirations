@@ -1,7 +1,8 @@
 {
   "name": "ng7-ion4-ideas",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
